@@ -1,0 +1,36 @@
+= ffi-locale
+
+Author: Sean O'Halpin
+
+A simple FFI wrapper for the C library {FFI::Locale#setlocale
+setlocale} and {FFI::Locale#localeconv localeconv} functions.
+
+You would typically use this to enable correct UTF-8 processing in an
+MRI Ruby 1.8.x script that makes low level widechar function calls via
+a C extension or FFI wrapper.
+
+The {FFI::Locale#setlocale setlocale} call is _not_ needed in 1.9.x or
+any version of JRuby.
+
+See the documentation for {FFI::Locale#setlocale setlocale} and
+{FFI::Locale#localeconv localeconv} for usage.
+
+See {FFI::Locale::LocaleConv} for the information returned by
+{FFI::Locale#localeconv}.
+
+See +man setlocale+, +man localeconv+ and +man 7 locale+ for details.
+
+== Usage
+
+You should call {FFI::Locale#setlocale setlocale} _before_
+calling {FFI::Locale#localeconv localeconv} otherwise you'll get
+random values in the {FFI::Locale::LocaleConv} structure.
+
+  if RUBY_VERSION < '1.9.0'
+    require 'ffi-locale'
+    FFI::Locale.setlocale(FFI::Locale::LC_ALL, "")
+  end
+
+  locale = FFI::Locale.localeconv
+  p locale.currency_symbol          # => '£' for en_GB.UTF-8
+
