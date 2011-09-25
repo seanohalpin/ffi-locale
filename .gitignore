@@ -1,0 +1,8 @@
+/pkg/
+/doc/
+/local/
+*.rbc
+*.log
+*.gem
+.ditz-config
+.yardoc/
