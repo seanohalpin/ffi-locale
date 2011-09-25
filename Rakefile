@@ -24,7 +24,7 @@ task :gem do
 end
 
 desc "Push #{project::NAME}-#{project::VERSION} gem to rubygems.org"
-task :release => :build do
+task :release => :gem do
   system "gem push #{project::NAME}-#{project::VERSION}"
 end
 
