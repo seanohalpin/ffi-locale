@@ -1,0 +1,5 @@
+= Changelog ffi-locale
+
+== 1.0.0 / 2011-09-25
+
+* Initial release
