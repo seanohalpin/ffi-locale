@@ -231,7 +231,7 @@ module FFI
             value = value.each_byte.to_a
           when :p_cs_precedes, :p_sep_precedes, :n_cs_precedes, :p_sep_by_space, :n_cs_precedes, :n_sep_by_space,
             :int_p_cs_precedes, :int_p_sep_by_space, :int_n_cs_precedes, :int_n_sep_by_space
-            value = value == 1 ? true : false
+            value = (value == 1)
           end
           case value
           when String
